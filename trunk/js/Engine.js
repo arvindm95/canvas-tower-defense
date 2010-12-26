@@ -1,4 +1,4 @@
-var pba = {
+var engine = {
 	canvasElement: null, 
 	canvas: null,
 	
@@ -25,12 +25,12 @@ var pba = {
 		this.Utility = new Utility();
 		
 		//mainLoop
-		setInterval(pba.mainLoop, 33);
+		setInterval(engine.mainLoop, 33);
 	},
 	
 	mainLoop: function() {
-		pba.MouseManager.update();
-		pba.LevelManager.update();
+		engine.MouseManager.update();
+		engine.LevelManager.update();
 	},
 	
 	
@@ -43,18 +43,18 @@ var pba = {
 
 
 
-pba.Class = function(members) {
+engine.Class = function(members) {
 	var fn = function() {
 		if(arguments[0] != 'no_init') {
 			return this.init.apply(this, arguments);
 		}
 	}
 	fn.prototype = members;
-	pba.update(fn, pba.Class.prototype);
+	engine.update(fn, engine.Class.prototype);
 	return fn;
 }
 
-pba.Class.prototype = {
+engine.Class.prototype = {
 	extend: function(members) {
 		var parent = new this('no_init');
 		for(k in members) {
@@ -65,11 +65,11 @@ pba.Class.prototype = {
 			}
 			parent[k] = cur;
 		}
-		return new pba.Class(parent);
+		return new engine.Class(parent);
 	},
 
 	implement: function(members) {
-		pba.update(this.prototype, members);
+		engine.update(this.prototype, members);
 	},
 
 	_parentize: function(cur, prev) {
