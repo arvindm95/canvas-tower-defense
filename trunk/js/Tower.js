@@ -49,7 +49,7 @@ Tower = pba.Rectangle.extend({
 	getEnemieInRange: function() {
 		for(var i = 0; i < pba.LevelManager.currentLevel.monster.length; i++) {
 			e = pba.LevelManager.currentLevel.monster[i];
-			if(!e.disabled) {
+			if(!e.disabled && (pba.Utility.getDistance(this.x, this.y, e.x, e.y) <= this.range)) {
 				return e;
 			}
 		}

@@ -17,9 +17,9 @@ World1 = new pba.Class({
 	},
 	
 	initWayPoints: function() {
-		this.wayPoints.push(new WayPoint(1, 2, 100, 100));
-		this.wayPoints.push(new WayPoint(2, 3, 200, 400));
-		this.wayPoints.push(new WayPoint(3, 1, 400, 200));
+		this.wayPoints.push(new WayPoint(1, 2, 70, 70));
+		this.wayPoints.push(new WayPoint(2, 3, 80, 400));
+		this.wayPoints.push(new WayPoint(3, 1, 400, 150));
 	},
 	
 	initTower: function() {
