@@ -50,6 +50,30 @@ Utility = new pba.Class({
 		
 		newCoords = new Array(xn, yn);
 		return newCoords;
+	},
+	
+	getDistance: function(x, y, destX, destY){
+	 var x1, x2, y1, y2, dist, scal, xn, yn;
+		 		 
+	if(x > destX){
+		x1 = x;
+		x2 = destX;
+	} else {
+		x1 = destX;
+		x2 = x;
+	}
+		
+	if(y > destY) {
+		y1 = y;
+		y2 = destY;
+	} else {
+		y1 = destY;
+		y2 = y;
+	}
+
+	dist = Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2));
+	return dist;
+		
 	}
 	
 });
