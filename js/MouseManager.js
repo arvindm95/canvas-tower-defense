@@ -1,7 +1,7 @@
 /**
  * Manages clicks and other mouse events on the canvas element.
  * 
- * @author Patrick Bauer, Marc Wustrack, Adrian Cieluch
+ * @author 		Patrick Bauer, Marc Wustrack, Adrian Cieluch
  * @copyright	2010 Firmenname
  * 
  */
