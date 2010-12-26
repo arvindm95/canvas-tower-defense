@@ -1,4 +1,4 @@
-WayPoint = pba.Abstract.extend({
+WayPoint = engine.Abstract.extend({
 	
 	name: null,
 	nextWayPoint: null,
@@ -14,7 +14,7 @@ WayPoint = pba.Abstract.extend({
 	},
 	
 	getNextWayPoint: function() {
-		return pba.LevelManager.currentLevel.wayPoints[this.nextWayPoint - 1];	
+		return engine.LevelManager.currentLevel.wayPoints[this.nextWayPoint - 1];	
 	}
 		
 });

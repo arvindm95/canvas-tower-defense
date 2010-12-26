@@ -6,7 +6,7 @@
  * 
  */
 
-Utility = new pba.Class({
+Utility = new engine.Class({
 	
 	init: function() {},
 	

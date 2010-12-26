@@ -6,7 +6,7 @@
  * 
  */
 
-MouseManager = new pba.Class({
+MouseManager = new engine.Class({
 	objects: null,
 	dragElement: null,
 	gotDragged: false,
@@ -28,10 +28,10 @@ MouseManager = new pba.Class({
 	},
 	
 	garbageCollector: function() {
-		for(var i = 0; i < pba.MouseManager.objects.length; i++) {
-				e = pba.MouseManager.objects[i];
+		for(var i = 0; i < engine.MouseManager.objects.length; i++) {
+				e = engine.MouseManager.objects[i];
 				if(!e || e.del) {
-					pba.MouseManager.objects.splice(i,1);
+					engine.MouseManager.objects.splice(i,1);
 				}
 			}
 	},
@@ -41,13 +41,13 @@ MouseManager = new pba.Class({
 	 * the click function of the first clickable object
 	 */
 	handleClick: function() { 
-		pba.canvasElement.bind("click", function(el) {
-			if(!pba.MouseManager.gotDragged) {
-				pba.MouseManager.updateMouse(el);
+		engine.canvasElement.bind("click", function(el) {
+			if(!engine.MouseManager.gotDragged) {
+				engine.MouseManager.updateMouse(el);
 				
-				for(var i = pba.MouseManager.objects.length - 1; i >= 0; i--) {
-					e = pba.MouseManager.objects[i];
-					if(e.isClickable() && pba.MouseManager.inRange(e)) {
+				for(var i = engine.MouseManager.objects.length - 1; i >= 0; i--) {
+					e = engine.MouseManager.objects[i];
+					if(e.isClickable() && engine.MouseManager.inRange(e)) {
 						try {
 							e.click();
 						} catch(err) {}
@@ -59,42 +59,42 @@ MouseManager = new pba.Class({
 	},
 	
 	handleDrag: function() {
-		pba.canvasElement.bind("mousedown", function(el) {
-			pba.MouseManager.updateMouse(el);
-			pba.MouseManager.gotDragged = false;
+		engine.canvasElement.bind("mousedown", function(el) {
+			engine.MouseManager.updateMouse(el);
+			engine.MouseManager.gotDragged = false;
 			
-			for(var i = pba.MouseManager.objects.length - 1; i >= 0; i--) {
-				var e = pba.MouseManager.objects[i];
-				if(e.isDragable() && pba.MouseManager.inRange(e)) {
-					pba.MouseManager.dragElement = pba.objects[i];
-					pba.MouseManager.offsetX = pba.MouseManager.mouseX - e.x;
-					pba.MouseManager.offsetY = pba.MouseManager.mouseY - e.y;
+			for(var i = engine.MouseManager.objects.length - 1; i >= 0; i--) {
+				var e = engine.MouseManager.objects[i];
+				if(e.isDragable() && engine.MouseManager.inRange(e)) {
+					engine.MouseManager.dragElement = engine.objects[i];
+					engine.MouseManager.offsetX = engine.MouseManager.mouseX - e.x;
+					engine.MouseManager.offsetY = engine.MouseManager.mouseY - e.y;
 					break;
 				}
 			}
 		});
 		
-		pba.canvasElement.bind("mousemove", function(el) {
-			pba.MouseManager.updateMouse(el);
+		engine.canvasElement.bind("mousemove", function(el) {
+			engine.MouseManager.updateMouse(el);
 			
-			if(pba.MouseManager.dragElement != null) {
-				pba.MouseManager.gotDragged = true;
-				pba.MouseManager.dragElement.drag(pba.MouseManager.mouseX - pba.MouseManager.offsetX, pba.MouseManager.mouseY - pba.MouseManager.offsetY);
+			if(engine.MouseManager.dragElement != null) {
+				engine.MouseManager.gotDragged = true;
+				engine.MouseManager.dragElement.drag(engine.MouseManager.mouseX - engine.MouseManager.offsetX, engine.MouseManager.mouseY - engine.MouseManager.offsetY);
 			} else {
-				if(pba.MouseManager.hoverElement != null && !pba.MouseManager.inRange(pba.MouseManager.hoverElement)) {
+				if(engine.MouseManager.hoverElement != null && !engine.MouseManager.inRange(engine.MouseManager.hoverElement)) {
 					try {
-						pba.MouseManager.hoverElement.mouseOut();
+						engine.MouseManager.hoverElement.mouseOut();
 					} catch(err) {}
-					pba.MouseManager.hoverElement = null;
+					engine.MouseManager.hoverElement = null;
 				}
 				
-				if(pba.MouseManager.hoverElement == null) {
-					for(var i = pba.MouseManager.objects.length - 1; i >= 0; i--) {
-						var e = pba.MouseManager.objects[i];
-						if(e.isHoverable() && pba.MouseManager.inRange(e)) {
-							pba.MouseManager.hoverElement = pba.MouseManager.objects[i];
+				if(engine.MouseManager.hoverElement == null) {
+					for(var i = engine.MouseManager.objects.length - 1; i >= 0; i--) {
+						var e = engine.MouseManager.objects[i];
+						if(e.isHoverable() && engine.MouseManager.inRange(e)) {
+							engine.MouseManager.hoverElement = engine.MouseManager.objects[i];
 							try {
-								pba.MouseManager.hoverElement.mouseIn();
+								engine.MouseManager.hoverElement.mouseIn();
 							} catch(err) {}
 							break;
 						}
@@ -103,21 +103,21 @@ MouseManager = new pba.Class({
 			}
 		});
 		
-		pba.canvasElement.bind("mouseup", function(el) {
-			if(pba.MouseManager.dragElement != null) {
-				pba.MouseManager.updateMouse(el);
+		engine.canvasElement.bind("mouseup", function(el) {
+			if(engine.MouseManager.dragElement != null) {
+				engine.MouseManager.updateMouse(el);
 				try {
-					pba.MouseManager.dragElement.drop(pba.MouseManager.mouseX - pba.MouseManager.offsetX, pba.MouseManager.mouseY - pba.MouseManager.offsetY);
+					engine.MouseManager.dragElement.drop(engine.MouseManager.mouseX - engine.MouseManager.offsetX, engine.MouseManager.mouseY - engine.MouseManager.offsetY);
 				} catch(err) {}
-				pba.MouseManager.dragElement = null;
+				engine.MouseManager.dragElement = null;
 			}
 		});
 		
 	},
 	
 	updateMouse: function(el) {
-		this.mouseX = parseInt(el.pageX - pba.canvasElement.offset().left);
-		this.mouseY = parseInt(el.pageY - pba.canvasElement.offset().top);
+		this.mouseX = parseInt(el.pageX - engine.canvasElement.offset().left);
+		this.mouseY = parseInt(el.pageY - engine.canvasElement.offset().top);
 	},
 	
 	inRange: function(e) {
