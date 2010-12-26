@@ -46,7 +46,7 @@ MouseManager = new pba.Class({
 				pba.MouseManager.updateMouse(el);
 				
 				for(var i = pba.MouseManager.objects.length - 1; i >= 0; i--) {
-					e = pba.objects[i];
+					e = pba.MouseManager.objects[i];
 					if(e.isClickable() && pba.MouseManager.inRange(e)) {
 						try {
 							e.click();
@@ -92,7 +92,7 @@ MouseManager = new pba.Class({
 					for(var i = pba.MouseManager.objects.length - 1; i >= 0; i--) {
 						var e = pba.MouseManager.objects[i];
 						if(e.isHoverable() && pba.MouseManager.inRange(e)) {
-							pba.MouseManager.hoverElement = pba.objects[i];
+							pba.MouseManager.hoverElement = pba.MouseManager.objects[i];
 							pba.MouseManager.hoverElement.mouseIn();
 							break;
 						}
