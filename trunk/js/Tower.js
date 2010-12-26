@@ -3,11 +3,15 @@ Tower = pba.Rectangle.extend({
 	shootSpeed: 30,
 	shootDelay: null,
 	shots: null,
+	img: null,
 	
 	init: function(x,y,h,w,color) {
 		this.parent(x,y,h,w,color);
 		this.shootDelay = this.shootSpeed;
 		this.shots = new Array();
+		
+		this.img = new Image();
+		this.img.src = 'images/tower.png';
 	},
 
 	update: function() {
@@ -50,6 +54,10 @@ Tower = pba.Rectangle.extend({
 			}
 		}
 		return null;
+	},
+	
+	draw: function() {
+		pba.canvas.drawImage(this.img, this.x, this.y);
 	}
 	
 });
