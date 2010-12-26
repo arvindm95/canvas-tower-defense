@@ -25,8 +25,8 @@ World1 = new pba.Class({
 	initTower: function() {
 		tower1 = new Tower(50, 50, 25, 32, '#f00');
 		tower2 = new Tower(50, 400, 25, 32, '#f00');
-		tower3 = new Tower(650, 50, 25, 32, '#f00')
-		tower4 = new Tower(650, 400, 25, 32, '#f00')
+		tower3 = new Tower(650, 50, 25, 32, '#f00');
+		tower4 = new Tower(650, 400, 25, 32, '#f00');
 		
 		this.tower.push(tower1, tower2, tower3, tower4);
 		pba.MouseManager.objects.push(tower1, tower2, tower3, tower4);

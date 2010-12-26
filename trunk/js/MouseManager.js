@@ -93,7 +93,9 @@ MouseManager = new pba.Class({
 						var e = pba.MouseManager.objects[i];
 						if(e.isHoverable() && pba.MouseManager.inRange(e)) {
 							pba.MouseManager.hoverElement = pba.MouseManager.objects[i];
-							pba.MouseManager.hoverElement.mouseIn();
+							try {
+								pba.MouseManager.hoverElement.mouseIn();
+							} catch(err) {}
 							break;
 						}
 					}
