@@ -9,8 +9,7 @@ Tower = pba.Rectangle.extend({
 	init: function(x,y,h,w,color) {
 		this.parent(x,y,h,w,color);
 		this.shootDelay = this.shootSpeed;
-		this.shots = new Array();
-		
+		this.shots = new Array();		
 		this.img = new Image();
 		this.img.src = 'images/tower.png';
 	},
@@ -58,10 +57,17 @@ Tower = pba.Rectangle.extend({
 	},
 	
 	draw: function() {
-		if(this.isHovered()) {
-				
-		}
+		
 		pba.canvas.drawImage(this.img, this.x, this.y);
+		if(this.isHovered()){
+			pba.canvas.fillStyle = "rgba(255, 255, 255, 0.2)";
+			pba.canvas.arc(this.x+(this.width/2),this.y+(this.width/2),this.range,0,Math.PI*2,true);
+			pba.canvas.fill();
+			pba.canvas.lineWidth = 1;
+			pba.canvas.strokeStyle = "white"; 
+			pba.canvas.stroke();	
+			
+		}
 	}
 	
 });
