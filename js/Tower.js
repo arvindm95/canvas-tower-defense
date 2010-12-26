@@ -4,6 +4,7 @@ Tower = pba.Rectangle.extend({
 	shootDelay: null,
 	shots: null,
 	img: null,
+	hoverable: true,
 	
 	init: function(x,y,h,w,color) {
 		this.parent(x,y,h,w,color);
@@ -57,6 +58,9 @@ Tower = pba.Rectangle.extend({
 	},
 	
 	draw: function() {
+		if(this.isHovered()) {
+				
+		}
 		pba.canvas.drawImage(this.img, this.x, this.y);
 	}
 	
