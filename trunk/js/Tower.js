@@ -57,17 +57,17 @@ Tower = pba.Rectangle.extend({
 	},
 	
 	draw: function() {
-		
-		pba.canvas.drawImage(this.img, this.x, this.y);
 		if(this.isHovered()){
+			pba.canvas.beginPath();
 			pba.canvas.fillStyle = "rgba(255, 255, 255, 0.2)";
 			pba.canvas.arc(this.x+(this.width/2),this.y+(this.width/2),this.range,0,Math.PI*2,true);
 			pba.canvas.fill();
 			pba.canvas.lineWidth = 1;
 			pba.canvas.strokeStyle = "white"; 
-			pba.canvas.stroke();	
-			
+			pba.canvas.stroke();
+			pba.canvas.closePath();
 		}
+		pba.canvas.drawImage(this.img, this.x, this.y);
 	}
 	
 });
