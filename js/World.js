@@ -1,4 +1,4 @@
-World1 = new pba.Class({
+World1 = new engine.Class({
 	tickCounter:30,
 	monsterCounter:0,
 	monster: null,
@@ -29,7 +29,7 @@ World1 = new pba.Class({
 		tower4 = new Tower(650, 400, 25, 32, '#f00');
 		
 		this.tower.push(tower1, tower2, tower3, tower4);
-		pba.MouseManager.objects.push(tower1, tower2, tower3, tower4);
+		engine.MouseManager.objects.push(tower1, tower2, tower3, tower4);
 	},
 	
 	update: function() {
@@ -78,7 +78,7 @@ World1 = new pba.Class({
 	},
 	
     draw: function() {
-		pba.canvas.fillStyle = '#000';
-		pba.canvas.fillRect(0,0,1000,1000);
+		engine.canvas.fillStyle = '#000';
+		engine.canvas.fillRect(0,0,1000,1000);
 	}
 });

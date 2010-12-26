@@ -1,4 +1,4 @@
-Monster = pba.RunnableObject.extend({
+Monster = engine.RunnableObject.extend({
 	maxHP: 150,
 	hp: 0,
 	temphp: 0,
@@ -35,9 +35,9 @@ Monster = pba.RunnableObject.extend({
 	draw: function() {
 		this.parent();
 		
-		pba.canvas.fillStyle = "#0f0";
-		pba.canvas.fillRect(this.x - 7, this.y - 10, Math.round(this.hp/(this.maxHP/24)) + 1, 3);
-		pba.canvas.fillText(Math.round(this.hp), this.x - 30, this.y - 10); 		
+		engine.canvas.fillStyle = "#0f0";
+		engine.canvas.fillRect(this.x - 7, this.y - 10, Math.round(this.hp/(this.maxHP/24)) + 1, 3);
+		engine.canvas.fillText(Math.round(this.hp), this.x - 30, this.y - 10); 		
 	},
 	
 	die: function(){

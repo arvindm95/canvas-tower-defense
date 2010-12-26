@@ -6,7 +6,7 @@
  * 
  */
 
-LevelManager = new pba.Class({
+LevelManager = new engine.Class({
 	currentLevel: null,
 	
 	init: function() {},

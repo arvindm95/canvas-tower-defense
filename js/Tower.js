@@ -1,4 +1,4 @@
-Tower = pba.Rectangle.extend({
+Tower = engine.Rectangle.extend({
 	range: 50,
 	shootSpeed: 30,
 	shootDelay: null,
@@ -13,7 +13,7 @@ Tower = pba.Rectangle.extend({
 		this.img = new Image();
 		this.img.src = 'images/tower.png';
 	},
-
+	
 	update: function() {
 		this.parent();
 		this.garbageCollector();
@@ -47,9 +47,9 @@ Tower = pba.Rectangle.extend({
 	},
 	
 	getEnemieInRange: function() {
-		for(var i = 0; i < pba.LevelManager.currentLevel.monster.length; i++) {
-			e = pba.LevelManager.currentLevel.monster[i];
-			if(!e.disabled && (pba.Utility.getDistance(this.x, this.y, e.x, e.y) <= this.range)) {
+		for(var i = 0; i < engine.LevelManager.currentLevel.monster.length; i++) {
+			e = engine.LevelManager.currentLevel.monster[i];
+			if(!e.disabled && (engine.Utility.getDistance(this.x, this.y, e.x, e.y) <= this.range)) {
 				return e;
 			}
 		}
@@ -58,16 +58,16 @@ Tower = pba.Rectangle.extend({
 	
 	draw: function() {
 		if(this.isHovered()){
-			pba.canvas.beginPath();
-			pba.canvas.fillStyle = "rgba(255, 255, 255, 0.2)";
-			pba.canvas.arc(this.x+(this.width/2),this.y+(this.width/2),this.range,0,Math.PI*2,true);
-			pba.canvas.fill();
-			pba.canvas.lineWidth = 1;
-			pba.canvas.strokeStyle = "white"; 
-			pba.canvas.stroke();
-			pba.canvas.closePath();
+			engine.canvas.beginPath();
+			engine.canvas.fillStyle = "rgba(255, 255, 255, 0.2)";
+			engine.canvas.arc(this.x+(this.width/2),this.y+(this.width/2),this.range,0,Math.PI*2,true);
+			engine.canvas.fill();
+			engine.canvas.lineWidth = 1;
+			engine.canvas.strokeStyle = "white"; 
+			engine.canvas.stroke();
+			engine.canvas.closePath();
 		}
-		pba.canvas.drawImage(this.img, this.x, this.y);
+		engine.canvas.drawImage(this.img, this.x, this.y);
 	}
 	
 });

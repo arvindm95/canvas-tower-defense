@@ -1,4 +1,4 @@
-pba.Abstract = new pba.Class({
+engine.Abstract = new engine.Class({
 	del: 0,	
 	
 	remove: function() {

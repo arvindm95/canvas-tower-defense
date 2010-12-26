@@ -8,9 +8,9 @@
 
 
 /*
- * @see pba.Abstract
+ * @see engine.Abstract
  */
-pba.Rectangle = pba.Abstract.extend({
+engine.Rectangle = engine.Abstract.extend({
 	x: 0,	
 	y: 0,
 	h: 0,
@@ -50,8 +50,8 @@ pba.Rectangle = pba.Abstract.extend({
 	},
 	
 	draw: function(canvas){
-		pba.canvas.fillStyle = this.getColor();
-		pba.canvas.fillRect(this.getX(),this.getY(),this.getWidth(),this.getHeight()); 
+		engine.canvas.fillStyle = this.getColor();
+		engine.canvas.fillRect(this.getX(),this.getY(),this.getWidth(),this.getHeight()); 
 	},
 
 	mouseIn: function() {
