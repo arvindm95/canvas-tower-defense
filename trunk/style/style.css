@@ -1,0 +1,76 @@
+/* Reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	margin:0;
+	padding:0;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+fieldset,img { 
+	border:0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+	font-style:normal;
+	font-weight:normal;
+}
+ol,ul {
+	list-style:none;
+}
+caption,th {
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+q:before,q:after {
+	content:'';
+}
+abbr,acronym { border:0;
+}
+
+
+/* Style */
+html, body {
+	text-align:center;
+	background-color:#3f3f3f;
+}
+
+#canvas{
+}
+
+#header {
+	position:relative;
+	margin:auto;
+	z-index:2;
+	min-height:200px;
+}
+
+#page {
+	width:748px;
+	margin:0px auto 30px;
+	text-align:left;
+	font-family:Arial, sans-serif;
+	font-size:12px;
+}
+
+#container {
+	position:relative;
+}
+
+#main {
+	background-color:#676562;
+	border:3px solid #595753;
+	position:relative;
+	z-index:2;
+	
+	-moz-border-radius-bottomleft:10px;
+	-moz-border-radius-bottomright:10px;
+	-moz-border-radius-topleft:10px;
+	-moz-border-radius-topright:10px;
+}
+
+#main .inner {
+	padding:20px;
+}

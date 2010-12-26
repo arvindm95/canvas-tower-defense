@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" xml:lang="de">
+<head>
+	<title>Canvas Test Site</title>
+		
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="content-script-type" content="text/javascript" />
+	<meta http-equiv="content-style-type" content="text/css" />
+	
+	<!-- style -->
+	<link rel="stylesheet" type="text/css" media="screen" href="style/style.css" />
+	
+	<!-- script -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+	
+	<script type="text/javascript" src="js/pba.js"></script>
+	<script type="text/javascript" src="js/Utility.js"></script>
+	<script type="text/javascript" src="js/LevelManager.js"></script>
+	<script type="text/javascript" src="js/MouseManager.js"></script>
+	<script type="text/javascript" src="js/Abstract.js"></script>
+	<script type="text/javascript" src="js/Rectangle.js"></script>
+	<script type="text/javascript" src="js/Bullet.js"></script>
+	<script type="text/javascript" src="js/WayPoint.js"></script>
+	<script type="text/javascript" src="js/RunnableObject.js"></script>
+	<script type="text/javascript" src="js/Monster.js"></script>
+	<script type="text/javascript" src="js/Tower.js"></script>
+	<script type="text/javascript" src="js/World.js"></script>
+
+	
+
+</head>
+<body>
+	<div id="page">
+		<a id="top"></a>
+	
+		<div id="header">
+			
+		</div>
+
+		<div id="container">
+			<div id="main">
+				<div class="inner">
+					<canvas id="gameContainer" width="700" height="500"></canvas>
+					<script type="text/javascript">
+						pba.main("#gameContainer");
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
