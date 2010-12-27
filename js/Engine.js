@@ -37,18 +37,18 @@ var engine = {
 		this.Utility = new Utility();
 		
 		//mainLoop
-		setInterval(engine.mainLoop, 33);
+		setInterval(function(obj) { obj.mainLoop(); }, 33, this);
 	},
 	
 	mainLoop: function() {
 		//manager
-		engine.MouseManager.update();
-		engine.LevelManager.update();
-		engine.Player.update();
-		engine.ActionBar.update();
+		this.MouseManager.update();
+		this.LevelManager.update();
+		this.Player.update();
+		this.ActionBar.update();
 		
 		//temp objects
-		engine.handleTempObjects();
+		this.handleTempObjects();
 	},
 	
 	handleTempObjects: function() {
