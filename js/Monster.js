@@ -3,6 +3,8 @@ Monster = engine.RunnableObject.extend({
 	hp: 0,
 	temphp: 0,
 	disabled: false,
+	slowed: false,
+	timer: null,
 	
 	init: function(x,y,h,w,color) {
 		this.parent(x,y,h,w,color);
@@ -12,6 +14,9 @@ Monster = engine.RunnableObject.extend({
 	
 	update: function() {
 		this.parent();
+		if(this.slowed && timer.finished){
+			this.speed = 4;
+		}
 	},
 	
 	getHit: function(damage) {
@@ -19,6 +24,12 @@ Monster = engine.RunnableObject.extend({
 		if (this.hp <= 0) {
 			this.die();
 		}
+	},
+	
+	getSlowed: function() {
+		this.speed = 2;
+		this.slowed = true;
+		timer = new Timer(3);
 	},
 	
 	willHit: function(damage) {
