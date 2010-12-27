@@ -5,9 +5,12 @@ Tower = engine.Rectangle.extend({
 	shots: null,
 	img: null,
 	hoverable: true,
+	widht:13,
+	height: 31,
+	color: '#f00',
 	
-	init: function(x,y,h,w,color) {
-		this.parent(x,y,h,w,color);
+	init: function(x,y) {
+		this.parent(x, y, this.height, this.width, this.color);
 		this.shootDelay = this.shootSpeed;
 		this.shots = new Array();		
 		this.img = new Image();
