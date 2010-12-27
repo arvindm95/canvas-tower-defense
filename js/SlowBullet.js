@@ -1,9 +1,8 @@
 SlowBullet = Bullet.extend({
 	slow: 1,
 		
-
 	update: function() {
-		this.parent();
+		engine.Rectangle.prototype.update.call(this);
 		
 		if(!this.enemy || this.enemy.del) {
 			this.remove();
