@@ -41,6 +41,7 @@ Monster = engine.RunnableObject.extend({
 	},
 	
 	die: function(){
+		engine.Player.addPoints(10);
 		this.remove();
 	}
 });

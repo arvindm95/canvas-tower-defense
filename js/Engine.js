@@ -5,6 +5,7 @@ var engine = {
 	//manager
 	MouseManager: null,
 	LevelManager: null,
+	Player: null,
 	
 	//utility
 	Utility: null,
@@ -21,6 +22,8 @@ var engine = {
 		this.LevelManager = new LevelManager();
 		this.LevelManager.load("World1");
 		
+		//Player
+		this.Player = new Player();
 		//helper
 		this.Utility = new Utility();
 		
@@ -31,6 +34,7 @@ var engine = {
 	mainLoop: function() {
 		engine.MouseManager.update();
 		engine.LevelManager.update();
+		engine.Player.update();
 	},
 	
 	
