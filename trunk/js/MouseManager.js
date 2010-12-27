@@ -40,83 +40,78 @@ MouseManager = new engine.Class({
 	 * Runs backwards through all visible objects and triggers
 	 * the click function of the first clickable object
 	 */
-	handleClick: function() { 
-		engine.canvasElement.bind("click", function(el) {
-			if(!engine.MouseManager.gotDragged) {
-				engine.MouseManager.updateMouse(el);
+	clickHandler: function(el) {
+		if(!this.gotDragged) {
+			this.updateMouse(el);
+			
+			for(var i = this.objects.length - 1; i >= 0; i--) {
+				e = this.objects[i];
+				if(e.isClickable() && this.inRange(e)) {
+					try {
+						e.click();
+					} catch(err) {}
+					break;
+				}
+			}
+		}
+	},
+	
+	mouseDownHandler: function(el) {
+		this.updateMouse(el);
+		this.gotDragged = false;
+		
+		for(var i = this.objects.length - 1; i >= 0; i--) {
+			var e = this.objects[i];
+			if(e.isDragable() && this.inRange(e)) {
+				this.dragElement = e.mouseDown();
+				this.offsetX = this.mouseX - e.x;
+				this.offsetY = this.mouseY - e.y;
 				
-				for(var i = engine.MouseManager.objects.length - 1; i >= 0; i--) {
-					e = engine.MouseManager.objects[i];
-					if(e.isClickable() && engine.MouseManager.inRange(e)) {
+				if (!this.dragElement || this.dragElement == null) 
+					this.dragElement = e;
+				
+				break;
+			}
+		}
+	},
+	
+	mouseMoveHandler: function(el) {
+		this.updateMouse(el);
+		
+		if(this.dragElement != null) {
+			this.gotDragged = true;
+			this.dragElement.drag(this.mouseX - this.offsetX, this.mouseY - this.offsetY);
+		} else {
+			if(this.hoverElement != null && !this.inRange(this.hoverElement)) {
+				try {
+					this.hoverElement.mouseOut();
+				} catch(err) {}
+				this.hoverElement = null;
+			}
+			
+			if(this.hoverElement == null) {
+				for(var i = this.objects.length - 1; i >= 0; i--) {
+					var e = this.objects[i];
+					if(e.isHoverable() && this.inRange(e)) {
+						this.hoverElement = this.objects[i];
 						try {
-							e.click();
+							this.hoverElement.mouseIn();
 						} catch(err) {}
 						break;
 					}
 				}
 			}
-		});
+		}
 	},
 	
-	handleDrag: function() {
-		engine.canvasElement.bind("mousedown", function(el) {
-			engine.MouseManager.updateMouse(el);
-			engine.MouseManager.gotDragged = false;
-			
-			for(var i = engine.MouseManager.objects.length - 1; i >= 0; i--) {
-				var e = engine.MouseManager.objects[i];
-				if(e.isDragable() && engine.MouseManager.inRange(e)) {
-					engine.MouseManager.dragElement = e.mouseDown();
-					engine.MouseManager.offsetX = engine.MouseManager.mouseX - e.x;
-					engine.MouseManager.offsetY = engine.MouseManager.mouseY - e.y;
-					
-					if (!engine.MouseManager.dragElement || engine.MouseManager.dragElement == null) 
-						engine.MouseManager.dragElement = e;
-					
-					break;
-				}
-			}
-		});
-		
-		engine.canvasElement.bind("mousemove", function(el) {
-			engine.MouseManager.updateMouse(el);
-			
-			if(engine.MouseManager.dragElement != null) {
-				engine.MouseManager.gotDragged = true;
-				engine.MouseManager.dragElement.drag(engine.MouseManager.mouseX - engine.MouseManager.offsetX, engine.MouseManager.mouseY - engine.MouseManager.offsetY);
-			} else {
-				if(engine.MouseManager.hoverElement != null && !engine.MouseManager.inRange(engine.MouseManager.hoverElement)) {
-					try {
-						engine.MouseManager.hoverElement.mouseOut();
-					} catch(err) {}
-					engine.MouseManager.hoverElement = null;
-				}
-				
-				if(engine.MouseManager.hoverElement == null) {
-					for(var i = engine.MouseManager.objects.length - 1; i >= 0; i--) {
-						var e = engine.MouseManager.objects[i];
-						if(e.isHoverable() && engine.MouseManager.inRange(e)) {
-							engine.MouseManager.hoverElement = engine.MouseManager.objects[i];
-							try {
-								engine.MouseManager.hoverElement.mouseIn();
-							} catch(err) {}
-							break;
-						}
-					}
-				}
-			}
-		});
-		
-		engine.canvasElement.bind("mouseup", function(el) {
-			if(engine.MouseManager.dragElement != null) {
-				engine.MouseManager.updateMouse(el);
-				try {
-					engine.MouseManager.dragElement.drop(engine.MouseManager.mouseX - engine.MouseManager.offsetX, engine.MouseManager.mouseY - engine.MouseManager.offsetY);
-				} catch(err) {}
-				engine.MouseManager.dragElement = null;
-			}
-		});
-		
+	mouseUpHandler: function(el) {
+		if(this.dragElement != null) {
+			this.updateMouse(el);
+			try {
+				this.dragElement.drop(this.mouseX - this.offsetX, this.mouseY - this.offsetY);
+			} catch(err) {}
+			this.dragElement = null;
+		}
 	},
 	
 	updateMouse: function(el) {
@@ -126,5 +121,26 @@ MouseManager = new engine.Class({
 	
 	inRange: function(e) {
 		return (this.mouseX > e.getX() && this.mouseX < (e.getX() + e.getWidth()) && this.mouseY > e.getY() && this.mouseY < (e.getY() + e.getHeight()));
+	},
+	
+	handleClick: function() { 
+		engine.canvasElement.bind("click", function(el) {
+			engine.MouseManager.clickHandler(el);
+		});
+	},
+	
+	handleDrag: function() {
+		engine.canvasElement.bind("mousedown", function(el) {
+			engine.MouseManager.mouseDownHandler(el);
+		});
+		
+		engine.canvasElement.bind("mousemove", function(el) {
+			engine.MouseManager.mouseMoveHandler(el);
+		});
+		
+		engine.canvasElement.bind("mouseup", function(el) {
+			engine.MouseManager.mouseUpHandler(el);
+		});
+		
 	}
 });

@@ -29,7 +29,7 @@ Monster = engine.RunnableObject.extend({
 	getSlowed: function() {
 		this.speed = 2;
 		this.slowed = true;
-		timer = new Timer(3);
+		timer = new Timer(3000);
 	},
 	
 	willHit: function(damage) {

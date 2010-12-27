@@ -1,5 +1,5 @@
 /**
- * Timer class
+ * Sets its state to finished after a given amount of time
  * 
  * @author 		Patrick Bauer, Marc Wustrack, Adrian Cieluch
  * @copyright	2010 Firmenname
@@ -7,15 +7,17 @@
  */
 
 Timer = new engine.Class({
-	time: 0,
 	finished: false,
-	id: 0,
-	obj: null,
+	time: 0,
 	
 	init: function(t) {
-		obj = this;
-		obj.id = setTimeout(function(){
+		this.time = t;
+		this.startTimer();
+	},
+	
+	startTimer: function() {
+		setTimeout(function(obj){
 			obj.finished = true; 
-		}, t*1000);
+		}, this.time, this);
 	}
 });
