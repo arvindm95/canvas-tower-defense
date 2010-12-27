@@ -14,9 +14,7 @@ Timer = new engine.Class({
 	
 	init: function(t) {
 		obj = this;
-		obj.id = setTimeout(
-		     function()
-		{
+		obj.id = setTimeout(function(){
 			obj.finished = true; 
 		}, t*1000);
 	}
