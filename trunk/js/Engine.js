@@ -5,6 +5,8 @@ var engine = {
 	//manager
 	MouseManager: null,
 	LevelManager: null,
+	
+	//player
 	Player: null,
 	
 	//utility

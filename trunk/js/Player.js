@@ -20,6 +20,14 @@ Player = new engine.Class({
 		this.points = this.points + p;
 	},
 	
+	setPoints: function(p) {
+		this.points = p;
+	},
+	
+	removePoints: function(p) {
+		this.addPoints(-p);	
+	},
+	
 	getPoints: function() {
 		return this.points;
 	},
