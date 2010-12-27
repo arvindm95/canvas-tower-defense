@@ -24,6 +24,7 @@ var engine = {
 		
 		//Player
 		this.Player = new Player();
+		
 		//helper
 		this.Utility = new Utility();
 		
@@ -37,14 +38,12 @@ var engine = {
 		engine.Player.update();
 	},
 	
-	
 	update: function(l1, l2) {
         for(var i in l2)
             l1[i] = l2[i];
         return l1;
     }
 }
-
 
 
 engine.Class = function(members) {
