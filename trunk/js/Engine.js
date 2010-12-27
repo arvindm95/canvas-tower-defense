@@ -2,12 +2,14 @@ var engine = {
 	canvasElement: null, 
 	canvas: null,
 	
+	//temp
+	tempObjects: new Array(),
+	
 	//manager
 	MouseManager: null,
 	LevelManager: null,
-	
-	//player
 	Player: null,
+	ActionBar: null,
 	
 	//utility
 	Utility: null,
@@ -27,6 +29,10 @@ var engine = {
 		//Player
 		this.Player = new Player();
 		
+		//ActionBar
+		this.ActionBar = new ActionBar();
+
+		
 		//helper
 		this.Utility = new Utility();
 		
@@ -35,9 +41,25 @@ var engine = {
 	},
 	
 	mainLoop: function() {
+		//manager
 		engine.MouseManager.update();
 		engine.LevelManager.update();
 		engine.Player.update();
+		engine.ActionBar.update();
+		
+		//temp objects
+		engine.handleTempObjects();
+	},
+	
+	handleTempObjects: function() {
+		for(var i = 0; i < this.tempObjects.length; i++) {
+			e = this.tempObjects[i];
+			if(!e || e.del) {
+				this.tempObjects.splice(i,1);
+				continue;
+			}
+			e.update();
+		}
 	},
 	
 	update: function(l1, l2) {

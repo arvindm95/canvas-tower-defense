@@ -45,6 +45,10 @@ engine.Rectangle = engine.Abstract.extend({
 		return;
 	},
 	
+	mouseDown: function() {
+		return this;
+	},
+	
 	update: function() {
 		this.draw();
 	},

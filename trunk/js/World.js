@@ -23,10 +23,10 @@ World1 = new engine.Class({
 	},
 	
 	initTower: function() {
-		tower1 = new SlowTower(50, 50, 25, 32, '#f00');
-		tower2 = new SlowTower(50, 400, 25, 32, '#f00');
-		tower3 = new SlowTower(650, 50, 25, 32, '#f00');
-		tower4 = new SlowTower(650, 400, 25, 32, '#f00');
+		tower1 = new SlowTower(50, 50);
+		tower2 = new SlowTower(50, 400);
+		tower3 = new SlowTower(650, 50);
+		tower4 = new SlowTower(650, 400);
 		
 		this.tower.push(tower1, tower2, tower3, tower4);
 		engine.MouseManager.objects.push(tower1, tower2, tower3, tower4);

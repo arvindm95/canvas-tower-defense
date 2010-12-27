@@ -66,9 +66,13 @@ MouseManager = new engine.Class({
 			for(var i = engine.MouseManager.objects.length - 1; i >= 0; i--) {
 				var e = engine.MouseManager.objects[i];
 				if(e.isDragable() && engine.MouseManager.inRange(e)) {
-					engine.MouseManager.dragElement = engine.objects[i];
+					engine.MouseManager.dragElement = e.mouseDown();
 					engine.MouseManager.offsetX = engine.MouseManager.mouseX - e.x;
 					engine.MouseManager.offsetY = engine.MouseManager.mouseY - e.y;
+					
+					if (!engine.MouseManager.dragElement || engine.MouseManager.dragElement == null) 
+						engine.MouseManager.dragElement = e;
+					
 					break;
 				}
 			}
