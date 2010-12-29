@@ -9,5 +9,4 @@
 DrawableSlowTower = DrawableTower.extend({
 	src: 'images/tower_slow.png',
 	spawn: 'SlowTower'
-	
 });

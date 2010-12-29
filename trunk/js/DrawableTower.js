@@ -23,13 +23,13 @@ DrawableTower = engine.Rectangle.extend({
 	},
 	
 	mouseDown: function(x,y,offsetX,offsetY) {
-		eval("tower = new Drawable" + this.spawn + "(" + (x - offsetX) + ", " + (y - offsetY) + ");");
+		tower = new window['Drawable' + this.spawn](x - offsetX, y - offsetY);
 		engine.tempObjects.push(tower);
 		return tower;
 	},
 	
 	drop: function() {
-		eval("tower = new " + this.spawn + "(" + this.x + ", " + this.y + ");");
+		tower = new  window[this.spawn](this.x, this.y);
 		engine.MouseManager.objects.push(tower);
 		engine.LevelManager.currentLevel.tower.push(tower);
 		

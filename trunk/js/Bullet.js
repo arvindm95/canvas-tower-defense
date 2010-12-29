@@ -17,7 +17,7 @@ Bullet = engine.Rectangle.extend({
 			this.remove();
 		} else {		
 			if(this.enemy.hitRange(this)) {
-				this.enemy.getHit(this.damage);
+				this.hitEnemy();
 				this.remove();
 			} else {
 				var newCoords = engine.Utility.runToPoint(this.x, this.y, (this.enemy.x + this.enemy.width/2), (this.enemy.y + this.enemy.height/2), this.speed);
@@ -25,6 +25,9 @@ Bullet = engine.Rectangle.extend({
 				this.y = newCoords[1];
 			}
 		}
-		
+	},
+	
+	hitEnemy: function() {
+		this.enemy.getHit(this.damage);
 	}
 });
