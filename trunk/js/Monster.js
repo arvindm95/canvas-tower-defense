@@ -1,5 +1,5 @@
 Monster = engine.RunnableObject.extend({
-	maxHP: 150,
+	maxHP: 30,
 	hp: 0,
 	temphp: 0,
 	disabled: false,

@@ -1,12 +1,13 @@
 Bullet = engine.Rectangle.extend({
 	enemy: null,
 	speed: 8,
+	damage: 3,
 		
 	init: function(x,y,h,w,enemy) {
 		this.parent(x,y,h,w,'#fff');
 		this.enemy = enemy;
 		
-		this.enemy.willHit(3);
+		this.enemy.willHit(this.damage);
 	},
 
 	update: function() {
@@ -16,7 +17,7 @@ Bullet = engine.Rectangle.extend({
 			this.remove();
 		} else {		
 			if(this.enemy.hitRange(this)) {
-				this.enemy.getHit(3);
+				this.enemy.getHit(this.damage);
 				this.remove();
 			} else {
 				var newCoords = engine.Utility.runToPoint(this.x, this.y, (this.enemy.x + this.enemy.width/2), (this.enemy.y + this.enemy.height/2), this.speed);

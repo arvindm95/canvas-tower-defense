@@ -1,5 +1,6 @@
 SlowTower = Tower.extend({
-	shootSpeed: 30,
+	shootSpeed: 50,
+	range: 80,
 	
 	init: function(x,y,h,w,color) {
 		this.parent(x,y,h,w,color);

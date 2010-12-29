@@ -52,7 +52,7 @@ World1 = new engine.Class({
 	},
 	
 	spawnMonster: function() {
-		if(this.tickCounter >= 20 && this.monsterCounter < 1) {
+		if(this.tickCounter >= 20 && this.monsterCounter < 5) {
 			this.monster.push(new Monster(10, 10, "#00f"));
 			this.tickCounter = 0;
 			this.monsterCounter++;
