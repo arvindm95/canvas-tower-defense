@@ -42,7 +42,7 @@ Utility = new engine.Class({
 		if (destY >= y )
 			yn = y + yn;
 		else 
-			yn = y - yn;
+			yn = y - yn; 
 			
 		
 		if ((destX <= x && xn <= destX) || (destX >= x && xn >= destX))
