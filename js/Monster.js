@@ -5,17 +5,22 @@ Monster = engine.RunnableObject.extend({
 	disabled: false,
 	slowed: false,
 	timer: null,
+	speed: 5,
+	slowedSpeed: 3,
+	stdSpeed: 0,
 	
 	init: function(x,y,h,w,color) {
 		this.parent(x,y,h,w,color);
 		this.temphp = this.maxHP;
 		this.hp = this.maxHP;
+		
+		this.stdSpeed = this.speed;
 	},
 	
 	update: function() {
 		this.parent();
 		if(this.slowed && timer.finished){
-			this.speed = 4;
+			this.speed = this.stdSpeed;
 		}
 	},
 	
@@ -27,7 +32,7 @@ Monster = engine.RunnableObject.extend({
 	},
 	
 	getSlowed: function() {
-		this.speed = 2;
+		this.speed = this.slowedSpeed;
 		this.slowed = true;
 		timer = new Timer(3000);
 	},
