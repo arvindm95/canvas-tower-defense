@@ -6,7 +6,7 @@ SlowTower = Tower.extend({
 		this.shootDelay = this.shootSpeed;
 		this.shots = new Array();		
 		this.img = new Image();
-		this.img.src = 'images/tower.png';
+		this.img.src = 'images/tower_slow.png';
 	},
 	
 	update: function() {

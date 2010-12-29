@@ -13,8 +13,9 @@ ActionBar = new engine.Class({
 		this.objects = new Array();
 		
 		tower = new DrawableTower(20, 460);
-		this.objects.push(tower);
-		engine.MouseManager.objects.push(tower);
+		tower2 = new DrawableSlowTower(80, 460);
+		this.objects.push(tower,tower2);
+		engine.MouseManager.objects.push(tower,tower2);
 	},
 	
 	update: function() {

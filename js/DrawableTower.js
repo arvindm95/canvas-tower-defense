@@ -12,22 +12,24 @@ DrawableTower = engine.Rectangle.extend({
 	width:13,
 	height: 31,
 	color: '#f00',
-	
+	src: 'images/tower.png',
+	spawn: 'Tower',
+		
 	init: function(x,y) {
 		this.parent(x, y, this.height, this.width, this.color);
 		
 		this.img = new Image();
-		this.img.src = 'images/tower.png';
+		this.img.src = this.src;
 	},
 	
 	mouseDown: function(x,y,offsetX,offsetY) {
-		tower = new DrawableTower(x - offsetX, y - offsetY);
+		eval("tower = new Drawable" + this.spawn + "(" + (x - offsetX) + ", " + (y - offsetY) + ");");
 		engine.tempObjects.push(tower);
 		return tower;
 	},
 	
 	drop: function() {
-		tower = new Tower(this.x, this.y);
+		eval("tower = new " + this.spawn + "(" + this.x + ", " + this.y + ");");
 		engine.MouseManager.objects.push(tower);
 		engine.LevelManager.currentLevel.tower.push(tower);
 		
