@@ -62,10 +62,12 @@ MouseManager = new engine.Class({
 		
 		for(var i = this.objects.length - 1; i >= 0; i--) {
 			var e = this.objects[i];
+			
 			if(e.isDragable() && this.inRange(e)) {
-				this.dragElement = e.mouseDown();
 				this.offsetX = this.mouseX - e.x;
 				this.offsetY = this.mouseY - e.y;
+				
+				this.dragElement = e.mouseDown(this.mouseX, this.mouseY, this.offsetX, this.offsetY);
 				
 				if (!this.dragElement || this.dragElement == null) 
 					this.dragElement = e;
@@ -80,7 +82,7 @@ MouseManager = new engine.Class({
 		
 		if(this.dragElement != null) {
 			this.gotDragged = true;
-			this.dragElement.drag(this.mouseX - this.offsetX, this.mouseY - this.offsetY);
+			this.dragElement.drag(this.mouseX, this.mouseY, this.offsetX, this.offsetY);
 		} else {
 			if(this.hoverElement != null && !this.inRange(this.hoverElement)) {
 				try {
@@ -108,7 +110,7 @@ MouseManager = new engine.Class({
 		if(this.dragElement != null) {
 			this.updateMouse(el);
 			try {
-				this.dragElement.drop(this.mouseX - this.offsetX, this.mouseY - this.offsetY);
+				this.dragElement.drop(this.mouseX, this.mouseY, this.offsetX, this.offsetY);
 			} catch(err) {}
 			this.dragElement = null;
 		}

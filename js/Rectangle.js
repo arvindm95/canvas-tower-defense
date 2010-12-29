@@ -36,14 +36,12 @@ engine.Rectangle = engine.Abstract.extend({
 	/* 
 	 * Standard drag function, which moves the dragged object along with the mousepointer
 	 */
-	drag: function(x,y) {
-		this.setX(x);
-		this.setY(y);
+	drag: function(x,y,offsetX,offsetY) {
+		this.setX(x - offsetX);
+		this.setY(y - offsetY);
 	},
 	
-	drop: function() {
-		return;
-	},
+	drop: function() { },
 	
 	mouseDown: function() {
 		return this;
