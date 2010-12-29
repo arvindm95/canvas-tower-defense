@@ -34,19 +34,24 @@ Utility = new engine.Class({
 		xn = parseInt(Math.abs(destX - x) / scal);
 		yn = parseInt(Math.abs(destY - y)/ scal);
 		
-		if (destX <= x && destY <= y ){
+		if (destX <= x)
 			xn = x - xn;
-			yn = y - yn;
-		} else if (destX <= x && destY >= y ) {
-			xn = x - xn;
-			yn = y + yn;
-		} else if(destX >= x && destY >= y ){
+		else
 			xn = x + xn;
+		
+		if (destY >= y )
 			yn = y + yn;
-		} else if(destX >= x && destY <= y ){
-			xn = x + xn;
+		else 
 			yn = y - yn;
-		}
+			
+		
+		if ((destX <= x && xn <= destX) || (destX >= x && xn >= destX))
+			xn = destX;
+		
+		if ((destY <= y && yn <= destY) || (destY >= y && yn >= destY) )
+			yn = destY;
+		
+				
 		
 		newCoords = new Array(xn, yn);
 		return newCoords;
