@@ -1,17 +1,17 @@
 Tower = engine.Rectangle.extend({
-	range: 50,
+	range: 150,
 	shootSpeed: 30,
 	shootDelay: null,
 	shots: null,
 	img: null,
 	hoverable: true,
-	widht:13,
+	width:13,
 	height: 31,
 	color: '#f00',
 	
 	init: function(x,y) {
 		this.parent(x, y, this.height, this.width, this.color);
-		this.shootDelay = this.shootSpeed;
+		this.shootDelay = 0;
 		this.shots = new Array();		
 		this.img = new Image();
 		this.img.src = 'images/tower.png';
