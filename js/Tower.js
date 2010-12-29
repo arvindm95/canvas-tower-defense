@@ -8,13 +8,15 @@ Tower = engine.Rectangle.extend({
 	width:13,
 	height: 31,
 	color: '#f00',
+	bulletType: 'Bullet',
+	src: 'images/tower.png',
 	
 	init: function(x,y) {
 		this.parent(x, y, this.height, this.width, this.color);
 		this.shootDelay = 0;
 		this.shots = new Array();		
 		this.img = new Image();
-		this.img.src = 'images/tower.png';
+		this.img.src = this.src;
 	},
 	
 	update: function() {
@@ -34,7 +36,7 @@ Tower = engine.Rectangle.extend({
 		if(this.shootDelay <= 0) {
 			enemy = this.getEnemieInRange();
 			if(enemy) {			
-				this.shots.push(new Bullet(this.x, this.y, 2, 2, enemy));
+				this.shots.push(new window[this.bulletType](this.x, this.y, 2, 2, enemy));
 				this.shootDelay = this.shootSpeed;
 			}		
 		}

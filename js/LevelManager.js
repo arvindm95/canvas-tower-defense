@@ -12,7 +12,7 @@ LevelManager = new engine.Class({
 	init: function() {},
 	
 	load: function(level) {
-		eval("this.currentLevel = new " + level + "();");
+		this.currentLevel = new window[level]();;
 		this.currentLevel.start();
 	},
 	
