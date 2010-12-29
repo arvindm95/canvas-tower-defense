@@ -1,5 +1,5 @@
 SlowBullet = Bullet.extend({
-	slow: 1,
+	damage: 1,
 		
 	update: function() {
 		engine.Rectangle.prototype.update.call(this);
@@ -8,7 +8,7 @@ SlowBullet = Bullet.extend({
 			this.remove();
 		} else {		
 			if(this.enemy.hitRange(this)) {
-				this.enemy.getHit(3);
+				this.enemy.getHit(this.damage);
 				this.enemy.getSlowed();
 				this.remove();
 			} else {
