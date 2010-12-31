@@ -63,16 +63,20 @@ Tower = engine.Rectangle.extend({
 	
 	draw: function() {
 		if(this.isHovered()){
-			engine.canvas.beginPath();
-			engine.canvas.fillStyle = "rgba(255, 255, 255, 0.2)";
-			engine.canvas.arc(this.x+(this.width/2),this.y+(this.width/2),this.range,0,Math.PI*2,true);
-			engine.canvas.fill();
-			engine.canvas.lineWidth = 1;
-			engine.canvas.strokeStyle = "white"; 
-			engine.canvas.stroke();
-			engine.canvas.closePath();
+			this.drawrange();
 		}
 		engine.canvas.drawImage(this.img, this.x, this.y);
+	},
+	
+	drawrange: function() {
+		engine.canvas.beginPath();
+		engine.canvas.fillStyle = "rgba(255, 255, 255, 0.2)";
+		engine.canvas.arc(this.x+(this.width/2),this.y+(this.width/2),this.range,0,Math.PI*2,true);
+		engine.canvas.fill();
+		engine.canvas.lineWidth = 1;
+		engine.canvas.strokeStyle = "white"; 
+		engine.canvas.stroke();
+		engine.canvas.closePath();		
 	}
 	
 });
