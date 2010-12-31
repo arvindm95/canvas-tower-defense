@@ -14,20 +14,12 @@ ActionBar = new engine.Class({
 		
 		tower = new DrawableTower(20, 460);
 		tower2 = new DrawableSlowTower(80, 460);
-		tower.hoverable = false;
-		tower2.hoverable = false;
 		this.objects.push(tower,tower2);
 		engine.MouseManager.objects.push(tower,tower2);
 	},
 	
 	update: function() {
 		this.draw();
-	},
-	
-	
-	draw: function() {
-		engine.canvas.fillStyle = "#ccc";
-		engine.canvas.fillRect(0, 450, 1000, 1000);
 	
 		for(var i = 0; i < this.objects.length; i++) {
 			e = this.objects[i];
@@ -37,5 +29,11 @@ ActionBar = new engine.Class({
 			}
 			e.update();
 		}
+	},
+	
+	
+	draw: function() {
+		engine.canvas.fillStyle = "#ccc";
+		engine.canvas.fillRect(0, 450, 1000, 1000);
 	}
 });
