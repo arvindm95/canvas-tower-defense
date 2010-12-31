@@ -15,45 +15,47 @@ DrawableTower = engine.Rectangle.extend({
 	src: 'images/tower.png',
 	spawn: 'Tower',
 	range: 150,
-	hoverable: true,
+	drawRange: false,
 	
 		
-	init: function(x,y) {
+	init: function(x,y,drawRange) {
 		this.parent(x, y, this.height, this.width, this.color);
+		
+		if (drawRange == true) {
+			this.drawRange = true;
+		}
 		
 		this.img = new Image();
 		this.img.src = this.src;
 	},
 	
 	mouseDown: function(x,y,offsetX,offsetY) {
-		tower = new window['Drawable' + this.spawn](x - offsetX, y - offsetY);
-		tower.hovered = true;
+		tower = new window['Drawable' + this.spawn](x - offsetX, y - offsetY, true);
 		engine.tempObjects.push(tower);		
 		return tower;
 	
 	},
 	
 	drop: function() {
-		tower = new  window[this.spawn](this.x, this.y);
+		tower = new window[this.spawn](this.x, this.y);
 		engine.MouseManager.objects.push(tower);
 		engine.LevelManager.currentLevel.tower.push(tower);
 		
 		this.remove();
 	},
 	
-	update: function(x,y) {
-		this.draw(x,y);
-		if(this.isHovered()){
-			this.drawrange();
-		}
-		
+	update: function() {
+		this.draw();
 	},
 	
-	draw: function(x,y) {
-		engine.canvas.drawImage(this.img, (x == null) ? this.x : x, (y == null) ? this.y : y);
+	draw: function() {
+		if(this.drawRange){
+			this.drawRangeCircle();
+		}	
+		engine.canvas.drawImage(this.img, this.x, this.y);
 	},
 	
-	drawrange: function() {
+	drawRangeCircle: function() {
 		engine.canvas.beginPath();
 		engine.canvas.fillStyle = "rgba(255, 255, 255, 0.2)";
 		engine.canvas.arc(this.x+(this.width/2),this.y+(this.width/2),this.range,0,Math.PI*2,true);

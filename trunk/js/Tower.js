@@ -63,12 +63,12 @@ Tower = engine.Rectangle.extend({
 	
 	draw: function() {
 		if(this.isHovered()){
-			this.drawrange();
+			this.drawRangeCircle();
 		}
 		engine.canvas.drawImage(this.img, this.x, this.y);
 	},
 	
-	drawrange: function() {
+	drawRangeCircle: function() {
 		engine.canvas.beginPath();
 		engine.canvas.fillStyle = "rgba(255, 255, 255, 0.2)";
 		engine.canvas.arc(this.x+(this.width/2),this.y+(this.width/2),this.range,0,Math.PI*2,true);
